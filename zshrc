@@ -130,7 +130,7 @@ alias lg='lazygit'
 # 需要按照当前情况设置代理
 # apt -o Acquire::http::proxy="socks5://10.0.0.1:1080/"
 # apt -o Acquire::http::proxy="http://10.0.0.1:1081/"
-export socks5_proxy=10.0.0.1:1080
+export socks5_proxy=10.0.0.1:1082
 alias setproxy="\
     export HTTP_PROXY=$socks5_proxy;\
     export HTTPS_PROXY=$socks5_proxy;\
