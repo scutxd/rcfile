@@ -116,7 +116,7 @@ alias ra='. ranger'
 #To prevent this you can create the following function in your shell's startup file:
 ranger() {
     if [ -z "$RANGER_LEVEL" ]; then
-        /usr/local/bin/ranger "$@"
+        /usr/bin/ranger "$@"
     else
         exit
     fi
