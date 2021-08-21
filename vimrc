@@ -52,6 +52,12 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 " Markdown
 " vim版本需要大于8.1或者使用neovim，先暂时留在这里
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync()}, 'for' :['markdown', 'vim-plug'] }
+" 自动粘贴MD文件中的图片，但是在WSL下剪贴板不能正常访问，无法正常使用
+Plug 'ferrine/md-img-paste.vim'
+autocmd FileType markdown nmap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+" there are some defaults for image directory and image name, you can change them
+" let g:mdip_imgdir = 'img'
+" let g:mdip_imgname = 'image'
 
 "Plug 'prettier/vim-prettier', {
 "  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json',
@@ -171,7 +177,11 @@ set foldmethod=syntax
 "打开文件是默认不折叠代码
 set foldlevelstart=99
 
-"发生更改时自动更新
+"在获得焦点事件时自动检查文件时间戳. 如果在vim外被修改, 则提示用户. 可以选择重载或者继续编辑
+"FocusGained  When Vim got input focus.  Only for the GUI version and a few console versions where this can be detected.
+"发现只有在鼠标点击回来时才会触发，上面有解释，看来并不是一个好的方法。
+autocmd FocusGained * :checktime
+"如果发现文件在vim外被修改, 在vim内没有修改, 则自动重载, 而不是提示用户
 set autoread
 
 "快捷键修改
